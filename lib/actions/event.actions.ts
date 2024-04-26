@@ -33,10 +33,6 @@ const populateEvent = (query: any) => {
 export async function createEvent({ userId, event, path }: CreateEventParams) {
   try {
     await connectToDatabase();
-    const isValidObjectId = mongoose.Types.ObjectId.isValid(userId);
-    if (!isValidObjectId) {
-      throw new Error("Invalid user ID");
-    }
     const organizer = await User.findById(userId);
     if (!organizer) throw new Error("Organizer not found");
 
